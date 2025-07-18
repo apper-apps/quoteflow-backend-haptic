@@ -1,17 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/utils/cn";
 import ApperIcon from "@/components/ApperIcon";
+import { userService } from "@/services/api/userService";
 
 const Sidebar = ({ isOpen, onClose, className }) => {
-  const navItems = [
-    { path: "/", label: "Dashboard", icon: "LayoutDashboard" },
-    { path: "/quotes", label: "Quotes", icon: "FileText" },
-    { path: "/products", label: "Products", icon: "Package" },
-    { path: "/customers", label: "Customers", icon: "Users" },
-    { path: "/reports", label: "Reports", icon: "BarChart3" },
-    { path: "/settings", label: "Settings", icon: "Settings" }
-  ];
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  const loadUser = async () => {
+    try {
+      const userData = await userService.getCurrentUser();
+      setUser(userData);
+    } catch (err) {
+      console.error("Failed to load user:", err);
+    }
+  };
+
+  const getNavItems = () => {
+    const baseItems = [
+      { path: "/", label: "Dashboard", icon: "LayoutDashboard" },
+      { path: "/quotes", label: "Quotes", icon: "FileText" },
+      { path: "/products", label: "Products", icon: "Package" },
+      { path: "/settings", label: "Settings", icon: "Settings" }
+    ];
+
+    if (user?.role === "agent") {
+      return [
+        ...baseItems,
+        { path: "/customers", label: "Customers", icon: "Users" },
+        { path: "/reports", label: "Reports", icon: "BarChart3" }
+      ];
+    }
+
+    return baseItems;
+  };
+
+  const navItems = getNavItems();
 
   const NavItem = ({ item, mobile = false }) => (
     <NavLink

@@ -4,8 +4,9 @@ import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import { quotesService } from "@/services/api/quotesService";
 import { productsService } from "@/services/api/productsService";
+import { userService } from "@/services/api/userService";
 
-const DashboardStats = () => {
+const DashboardStats = ({ userRole }) => {
   const [stats, setStats] = useState({
     totalQuotes: 0,
     totalProducts: 0,
@@ -16,31 +17,41 @@ const DashboardStats = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
-  useEffect(() => {
+useEffect(() => {
     loadStats();
-  }, []);
+  }, [userRole]);
 
-  const loadStats = async () => {
+const loadStats = async () => {
     try {
       setLoading(true);
       setError(null);
       
-      const [quotes, products] = await Promise.all([
+      const [user, quotes, products] = await Promise.all([
+        userService.getCurrentUser(),
         quotesService.getAll(),
         productsService.getAll()
       ]);
 
-      const totalQuotes = quotes.length;
-      const totalProducts = products.length;
-      const pendingQuotes = quotes.filter(q => q.status === "sent").length;
-      const acceptedQuotes = quotes.filter(q => q.status === "accepted").length;
+      setCurrentUser(user);
       
-      const totalRevenue = quotes
+      // Filter quotes based on user role
+      let filteredQuotes = quotes;
+      if (userRole === "customer" || user.role === "customer") {
+        filteredQuotes = quotes.filter(q => q.customerId === user.email);
+      }
+
+      const totalQuotes = filteredQuotes.length;
+      const totalProducts = products.length;
+      const pendingQuotes = filteredQuotes.filter(q => q.status === "sent").length;
+      const acceptedQuotes = filteredQuotes.filter(q => q.status === "accepted").length;
+      
+      const totalRevenue = filteredQuotes
         .filter(q => q.status === "accepted")
         .reduce((sum, q) => sum + q.totalCustomerCurrency, 0);
       
-      const totalProfit = quotes
+      const totalProfit = filteredQuotes
         .filter(q => q.status === "accepted")
         .reduce((sum, q) => {
           const profit = q.items?.reduce((itemSum, item) => {
@@ -85,11 +96,12 @@ const DashboardStats = () => {
     if (stats.totalQuotes === 0) return 0;
     return ((stats.acceptedQuotes / stats.totalQuotes) * 100).toFixed(1);
   };
+const isAgent = currentUser?.role === "agent" || userRole === "agent";
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <StatCard
-        title="Total Quotes"
+        title={isAgent ? "Total Quotes" : "My Quotes"}
         value={stats.totalQuotes}
         icon="FileText"
         trend={stats.totalQuotes > 0 ? "up" : null}
@@ -97,17 +109,19 @@ const DashboardStats = () => {
         gradient
       />
       
-      <StatCard
-        title="Total Products"
-        value={stats.totalProducts}
-        icon="Package"
-        trend={stats.totalProducts > 0 ? "up" : null}
-        trendValue="In catalog"
-        gradient
-      />
+      {isAgent && (
+        <StatCard
+          title="Total Products"
+          value={stats.totalProducts}
+          icon="Package"
+          trend={stats.totalProducts > 0 ? "up" : null}
+          trendValue="In catalog"
+          gradient
+        />
+      )}
       
       <StatCard
-        title="Total Revenue"
+        title={isAgent ? "Total Revenue" : "Quote Value"}
         value={formatCurrency(stats.totalRevenue)}
         icon="DollarSign"
         trend={stats.totalRevenue > 0 ? "up" : null}
@@ -115,14 +129,16 @@ const DashboardStats = () => {
         gradient
       />
       
-      <StatCard
-        title="Total Profit"
-        value={formatCurrency(stats.totalProfit)}
-        icon="TrendingUp"
-        trend={stats.totalProfit > 0 ? "up" : null}
-        trendValue={`${getAcceptanceRate()}% acceptance rate`}
-        gradient
-      />
+      {isAgent && (
+        <StatCard
+          title="Total Profit"
+          value={formatCurrency(stats.totalProfit)}
+          icon="TrendingUp"
+          trend={stats.totalProfit > 0 ? "up" : null}
+          trendValue={`${getAcceptanceRate()}% acceptance rate`}
+          gradient
+        />
+      )}
       
       <StatCard
         title="Pending Quotes"

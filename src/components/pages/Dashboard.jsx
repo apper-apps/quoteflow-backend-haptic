@@ -1,125 +1,101 @@
-import React from "react";
-import DashboardStats from "@/components/organisms/DashboardStats";
-import QuotesList from "@/components/organisms/QuotesList";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Card from "@/components/atoms/Card";
 import Button from "@/components/atoms/Button";
 import ApperIcon from "@/components/ApperIcon";
-import { useNavigate } from "react-router-dom";
+import Loading from "@/components/ui/Loading";
+import Error from "@/components/ui/Error";
+import { userService } from "@/services/api/userService";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const quickActions = [
-    {
-      title: "New Quote",
-      description: "Create a new quotation for a customer",
-      icon: "Plus",
-      action: () => navigate("/quotes"),
-      color: "from-primary to-blue-600"
-    },
-    {
-      title: "Add Product",
-      description: "Add a new product to your catalog",
-      icon: "Package",
-      action: () => navigate("/products"),
-      color: "from-secondary to-purple-600"
-    },
-    {
-      title: "View Reports",
-      description: "Analyze your quotation performance",
-      icon: "BarChart3",
-      action: () => navigate("/reports"),
-      color: "from-success to-green-600"
+  useEffect(() => {
+    loadUserData();
+  }, []);
+
+  const loadUserData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const userData = await userService.getCurrentUser();
+      setUser(userData);
+      
+      // Redirect based on user role
+      if (userData.role === "customer") {
+        navigate("/dashboard/customer");
+      } else if (userData.role === "agent") {
+        navigate("/dashboard/agent");
+      }
+    } catch (err) {
+      setError("Failed to load user data");
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
 
-  return (
-    <div className="space-y-8">
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
-        <div>
-          <h1 className="text-3xl font-bold gradient-text">Dashboard</h1>
-          <p className="text-gray-600 mt-1">
-            Welcome to your multi-agent quotation system
+  const handleRoleSwitch = async (role) => {
+    try {
+      await userService.switchRole(role);
+      loadUserData();
+    } catch (err) {
+      console.error("Failed to switch role:", err);
+    }
+  };
+if (loading) {
+    return <Loading variant="cards" rows={3} />;
+  }
+
+  if (error) {
+    return <Error message={error} onRetry={loadUserData} />;
+  }
+
+  // If user data is loaded but no redirect happened, show role selector
+
+return (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <Card className="max-w-md w-full p-8 text-center" variant="premium">
+        <div className="mb-6">
+          <div className="p-3 bg-gradient-to-r from-primary to-secondary rounded-lg inline-block mb-4">
+            <ApperIcon name="Users" className="h-8 w-8 text-white" />
+          </div>
+          <h1 className="text-2xl font-bold gradient-text mb-2">Select Dashboard</h1>
+          <p className="text-gray-600">
+            Choose your role to access the appropriate dashboard
           </p>
         </div>
-        
-        <div className="flex flex-wrap gap-3">
-          {quickActions.map((action, index) => (
-            <Button
-              key={index}
-              variant="primary"
-              icon={action.icon}
-              onClick={action.action}
-              className={`bg-gradient-to-r ${action.color} hover:shadow-lg transform hover:scale-105`}
-            >
-              {action.title}
-            </Button>
-          ))}
-        </div>
-      </div>
 
-      <DashboardStats />
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2">
-          <Card className="p-6" variant="premium">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Recent Quotes</h2>
-            <QuotesList />
-          </Card>
+        <div className="space-y-4">
+          <Button
+            variant="primary"
+            icon="UserCheck"
+            onClick={() => handleRoleSwitch("customer")}
+            className="w-full bg-gradient-to-r from-primary to-blue-600 hover:shadow-lg"
+          >
+            Customer Dashboard
+          </Button>
+          
+          <Button
+            variant="primary"
+            icon="Shield"
+            onClick={() => handleRoleSwitch("agent")}
+            className="w-full bg-gradient-to-r from-secondary to-purple-600 hover:shadow-lg"
+          >
+            Agent Dashboard
+          </Button>
         </div>
 
-        <div className="space-y-6">
-          <Card className="p-6" variant="premium">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">System Overview</h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-3 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg">
-                <div className="flex items-center space-x-3">
-                  <ApperIcon name="Users" className="h-5 w-5 text-primary" />
-                  <span className="text-sm font-medium">Active Agents</span>
-                </div>
-                <span className="text-sm font-bold text-primary">3</span>
-              </div>
-              
-              <div className="flex items-center justify-between p-3 bg-gradient-to-r from-success/10 to-green-100 rounded-lg">
-                <div className="flex items-center space-x-3">
-                  <ApperIcon name="Zap" className="h-5 w-5 text-success" />
-                  <span className="text-sm font-medium">System Status</span>
-                </div>
-                <span className="text-sm font-bold text-success">Online</span>
-              </div>
-              
-              <div className="flex items-center justify-between p-3 bg-gradient-to-r from-warning/10 to-yellow-100 rounded-lg">
-                <div className="flex items-center space-x-3">
-                  <ApperIcon name="Clock" className="h-5 w-5 text-warning" />
-                  <span className="text-sm font-medium">Pending Tasks</span>
-                </div>
-                <span className="text-sm font-bold text-warning">2</span>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="p-6" variant="premium">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Tips</h3>
-            <div className="space-y-3">
-              <div className="p-3 bg-gradient-to-r from-info/10 to-blue-100 rounded-lg">
-                <p className="text-sm text-gray-700">
-                  Use the markup calculator to automatically apply profit margins to your quotes.
-                </p>
-              </div>
-              <div className="p-3 bg-gradient-to-r from-secondary/10 to-purple-100 rounded-lg">
-                <p className="text-sm text-gray-700">
-                  Multi-currency support includes automatic 3% buffer for exchange rate fluctuations.
-                </p>
-              </div>
-              <div className="p-3 bg-gradient-to-r from-success/10 to-green-100 rounded-lg">
-                <p className="text-sm text-gray-700">
-                  Track supplier performance and build trusted vendor relationships.
-                </p>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </div>
+        {user && (
+          <div className="mt-6 p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+            <p className="text-sm text-gray-600">
+              Current: <span className="font-medium">{user.name}</span> ({user.role})
+            </p>
+          </div>
+        )}
+      </Card>
     </div>
   );
 };
