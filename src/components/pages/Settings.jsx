@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import Card from "@/components/atoms/Card";
-import Button from "@/components/atoms/Button";
-import FormField from "@/components/molecules/FormField";
-import Badge from "@/components/atoms/Badge";
-import ApperIcon from "@/components/ApperIcon";
 import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
+import Quotes from "@/components/pages/Quotes";
+import FormField from "@/components/molecules/FormField";
+import Card from "@/components/atoms/Card";
+import Badge from "@/components/atoms/Badge";
+import Button from "@/components/atoms/Button";
 import { cn } from "@/utils/cn";
 
 const Settings = () => {
@@ -424,10 +425,9 @@ const Settings = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="text-center p-4 bg-gradient-to-r from-primary/10 to-blue-100 rounded-lg">
             <div className="text-2xl font-bold text-primary mb-2">98.5%</div>
-            <div className="text-sm text-gray-600">System Uptime</div>
+<div className="text-sm text-gray-600">System Uptime</div>
           </div>
           <div className="text-center p-4 bg-gradient-to-r from-success/10 to-green-100 rounded-lg">
-<div className="text-center p-4 bg-gradient-to-r from-success/10 to-green-100 rounded-lg">
             <div className="text-2xl font-bold text-success mb-2">247</div>
             <div className="text-sm text-gray-600">Tasks Completed</div>
           </div>
@@ -435,7 +435,8 @@ const Settings = () => {
             <div className="text-2xl font-bold text-secondary mb-2">&lt; 2s</div>
             <div className="text-sm text-gray-600">Avg Response Time</div>
           </div>
-        </div>
+</div>
+      </Card>
 
       <div className="flex justify-end">
         <Button
