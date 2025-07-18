@@ -1,0 +1,160 @@
+[
+  {
+    "Id": 1,
+    "name": "Wireless Bluetooth Headphones",
+    "supplierLinks": [
+      "https://1688.com/product/wireless-headphones-001",
+      "https://alibaba.com/product/bt-headphones-premium"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=300&fit=crop"
+    ],
+    "realCostRMB": 85.50,
+    "quotationBaseRMB": 120.00,
+    "realDomesticShippingRMB": 8.00,
+    "quotedDomesticShippingRMB": 12.00,
+    "realInternationalShippingRMB": 25.00,
+    "quotedInternationalShippingRMB": 35.00,
+    "specifications": {
+      "category": "electronics",
+      "dimensions": "18cm x 16cm x 8cm",
+      "weight": "0.8 kg",
+      "color": "Black/White",
+      "batteryLife": "24 hours",
+      "bluetoothVersion": "5.0"
+    },
+    "supplierNotes": "Reliable supplier with 4.8/5 rating. Fast delivery and good quality control. Offers bulk discounts for orders over 100 units."
+  },
+  {
+    "Id": 2,
+    "name": "Smart Fitness Watch",
+    "supplierLinks": [
+      "https://1688.com/product/smart-watch-fitness-002",
+      "https://alibaba.com/product/fitness-tracker-smart"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1544117519-31a4b719223d?w=400&h=300&fit=crop"
+    ],
+    "realCostRMB": 120.00,
+    "quotationBaseRMB": 180.00,
+    "realDomesticShippingRMB": 6.00,
+    "quotedDomesticShippingRMB": 10.00,
+    "realInternationalShippingRMB": 20.00,
+    "quotedInternationalShippingRMB": 30.00,
+    "specifications": {
+      "category": "electronics",
+      "dimensions": "4.5cm x 3.8cm x 1.2cm",
+      "weight": "0.055 kg",
+      "displaySize": "1.4 inch",
+      "waterResistance": "IP68",
+      "batteryLife": "7 days"
+    },
+    "supplierNotes": "Premium quality manufacturer with CE and FCC certifications. Excellent customer service and warranty support."
+  },
+  {
+    "Id": 3,
+    "name": "Portable Phone Charger Power Bank",
+    "supplierLinks": [
+      "https://1688.com/product/power-bank-20000mah-003",
+      "https://alibaba.com/product/portable-charger-fast"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1609592707635-d4a5a2c71e35?w=400&h=300&fit=crop"
+    ],
+    "realCostRMB": 45.00,
+    "quotationBaseRMB": 75.00,
+    "realDomesticShippingRMB": 5.00,
+    "quotedDomesticShippingRMB": 8.00,
+    "realInternationalShippingRMB": 18.00,
+    "quotedInternationalShippingRMB": 25.00,
+    "specifications": {
+      "category": "electronics",
+      "dimensions": "15cm x 7cm x 2cm",
+      "weight": "0.4 kg",
+      "capacity": "20000mAh",
+      "outputPorts": "2 USB-A, 1 USB-C",
+      "fastCharging": "Yes"
+    },
+    "supplierNotes": "High volume supplier with competitive pricing. Quality is consistent and delivery is reliable. Offers custom branding options."
+  },
+  {
+    "Id": 4,
+    "name": "LED Desk Lamp with USB Charging",
+    "supplierLinks": [
+      "https://1688.com/product/led-desk-lamp-usb-004",
+      "https://alibaba.com/product/desk-lamp-adjustable"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop"
+    ],
+    "realCostRMB": 38.00,
+    "quotationBaseRMB": 60.00,
+    "realDomesticShippingRMB": 12.00,
+    "quotedDomesticShippingRMB": 18.00,
+    "realInternationalShippingRMB": 28.00,
+    "quotedInternationalShippingRMB": 40.00,
+    "specifications": {
+      "category": "home",
+      "dimensions": "45cm x 20cm x 15cm",
+      "weight": "1.2 kg",
+      "lightModes": "3 brightness levels",
+      "usbPorts": "2 USB-A ports",
+      "powerSource": "AC adapter"
+    },
+    "supplierNotes": "Established manufacturer with modern design capabilities. Products meet energy efficiency standards. Good for home office market."
+  },
+  {
+    "Id": 5,
+    "name": "Wireless Mouse with RGB Lighting",
+    "supplierLinks": [
+      "https://1688.com/product/wireless-mouse-rgb-005",
+      "https://alibaba.com/product/gaming-mouse-wireless"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=300&fit=crop"
+    ],
+    "realCostRMB": 25.00,
+    "quotationBaseRMB": 45.00,
+    "realDomesticShippingRMB": 3.00,
+    "quotedDomesticShippingRMB": 5.00,
+    "realInternationalShippingRMB": 12.00,
+    "quotedInternationalShippingRMB": 18.00,
+    "specifications": {
+      "category": "electronics",
+      "dimensions": "12cm x 6cm x 4cm",
+      "weight": "0.1 kg",
+      "connectivity": "2.4GHz wireless",
+      "batteryLife": "30 days",
+      "dpi": "Up to 3200 DPI"
+    },
+    "supplierNotes": "Gaming accessory specialist with good build quality. Popular with younger demographics. Offers various color options."
+  },
+  {
+    "Id": 6,
+    "name": "Bluetooth Speaker Waterproof",
+    "supplierLinks": [
+      "https://1688.com/product/bluetooth-speaker-waterproof-006",
+      "https://alibaba.com/product/portable-speaker-outdoor"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop"
+    ],
+    "realCostRMB": 68.00,
+    "quotationBaseRMB": 95.00,
+    "realDomesticShippingRMB": 7.00,
+    "quotedDomesticShippingRMB": 10.00,
+    "realInternationalShippingRMB": 22.00,
+    "quotedInternationalShippingRMB": 30.00,
+    "specifications": {
+      "category": "electronics",
+      "dimensions": "20cm x 8cm x 8cm",
+      "weight": "0.65 kg",
+      "waterRating": "IPX7",
+      "bluetoothVersion": "5.0",
+      "batteryLife": "12 hours"
+    },
+    "supplierNotes": "Outdoor gear manufacturer with excellent waterproofing technology. Great for sports and outdoor market segment."
+  }
+]

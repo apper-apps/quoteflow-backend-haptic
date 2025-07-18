@@ -1,0 +1,170 @@
+[
+  {
+    "Id": 1,
+    "customerId": "CUST-001",
+    "agentId": "AGT-001",
+    "currency": "USD",
+    "exchangeRate": 7.2,
+    "markupPercentage": 15,
+    "status": "accepted",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "totalRMB": 1245.00,
+    "totalCustomerCurrency": 178.50,
+    "items": [
+      {
+        "productId": 1,
+        "quantity": 2,
+        "finalPricePerUnitRMB": 138.00,
+        "finalShippingRMB": 54.05,
+        "profitMargin": 38.0
+      },
+      {
+        "productId": 3,
+        "quantity": 1,
+        "finalPricePerUnitRMB": 86.25,
+        "finalShippingRMB": 37.95,
+        "profitMargin": 47.8
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "customerId": "CUST-002",
+    "agentId": "AGT-002",
+    "currency": "EUR",
+    "exchangeRate": 7.8,
+    "markupPercentage": 20,
+    "status": "sent",
+    "createdAt": "2024-01-18T14:15:00Z",
+    "totalRMB": 2180.00,
+    "totalCustomerCurrency": 348.75,
+    "items": [
+      {
+        "productId": 2,
+        "quantity": 3,
+        "finalPricePerUnitRMB": 216.00,
+        "finalShippingRMB": 48.00,
+        "profitMargin": 44.4
+      },
+      {
+        "productId": 4,
+        "quantity": 2,
+        "finalPricePerUnitRMB": 72.00,
+        "finalShippingRMB": 69.60,
+        "profitMargin": 47.2
+      }
+    ]
+  },
+  {
+    "Id": 3,
+    "customerId": "CUST-001",
+    "agentId": "AGT-001",
+    "currency": "USD",
+    "exchangeRate": 7.2,
+    "markupPercentage": 18,
+    "status": "draft",
+    "createdAt": "2024-01-20T09:45:00Z",
+    "totalRMB": 890.50,
+    "totalCustomerCurrency": 127.85,
+    "items": [
+      {
+        "productId": 5,
+        "quantity": 5,
+        "finalPricePerUnitRMB": 53.10,
+        "finalShippingRMB": 27.14,
+        "profitMargin": 52.8
+      },
+      {
+        "productId": 6,
+        "quantity": 1,
+        "finalPricePerUnitRMB": 112.10,
+        "finalShippingRMB": 47.20,
+        "profitMargin": 39.3
+      }
+    ]
+  },
+  {
+    "Id": 4,
+    "customerId": "CUST-003",
+    "agentId": "AGT-003",
+    "currency": "GBP",
+    "exchangeRate": 9.1,
+    "markupPercentage": 25,
+    "status": "rejected",
+    "createdAt": "2024-01-22T16:20:00Z",
+    "totalRMB": 1650.00,
+    "totalCustomerCurrency": 196.43,
+    "items": [
+      {
+        "productId": 1,
+        "quantity": 1,
+        "finalPricePerUnitRMB": 150.00,
+        "finalShippingRMB": 58.75,
+        "profitMargin": 43.0
+      },
+      {
+        "productId": 2,
+        "quantity": 2,
+        "finalPricePerUnitRMB": 225.00,
+        "finalShippingRMB": 50.00,
+        "profitMargin": 46.7
+      }
+    ]
+  },
+  {
+    "Id": 5,
+    "customerId": "CUST-004",
+    "agentId": "AGT-002",
+    "currency": "USD",
+    "exchangeRate": 7.2,
+    "markupPercentage": 12,
+    "status": "sent",
+    "createdAt": "2024-01-25T11:30:00Z",
+    "totalRMB": 756.00,
+    "totalCustomerCurrency": 108.57,
+    "items": [
+      {
+        "productId": 3,
+        "quantity": 3,
+        "finalPricePerUnitRMB": 84.00,
+        "finalShippingRMB": 36.96,
+        "profitMargin": 46.4
+      },
+      {
+        "productId": 5,
+        "quantity": 2,
+        "finalPricePerUnitRMB": 50.40,
+        "finalShippingRMB": 25.76,
+        "profitMargin": 50.4
+      }
+    ]
+  },
+  {
+    "Id": 6,
+    "customerId": "CUST-002",
+    "agentId": "AGT-001",
+    "currency": "EUR",
+    "exchangeRate": 7.8,
+    "markupPercentage": 22,
+    "status": "accepted",
+    "createdAt": "2024-01-28T13:45:00Z",
+    "totalRMB": 1420.80,
+    "totalCustomerCurrency": 234.25,
+    "items": [
+      {
+        "productId": 4,
+        "quantity": 4,
+        "finalPricePerUnitRMB": 73.20,
+        "finalShippingRMB": 70.72,
+        "profitMargin": 48.1
+      },
+      {
+        "productId": 6,
+        "quantity": 1,
+        "finalPricePerUnitRMB": 115.90,
+        "finalShippingRMB": 48.80,
+        "profitMargin": 41.3
+      }
+    ]
+  }
+]
